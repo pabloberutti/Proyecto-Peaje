@@ -10,10 +10,6 @@ public class Vehiculo {
 		this.patente = patente;
 	}
 
-	public String getPatente() {
-		return this.patente;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(patente);
@@ -30,6 +26,5 @@ public class Vehiculo {
 		Vehiculo other = (Vehiculo) obj;
 		return Objects.equals(patente, other.patente);
 	}
-
 	
 }

@@ -15,16 +15,14 @@ public class Peaje {
 
 	public Boolean registrarPasadaDeUnVehiculo(Pasada pasada) {
 		Boolean pasoUnVehiculo = listaDeVehiculosQuePasaron.add(pasada);
+		
+		vehiculosSinDuplicadosQuePasaron.add(pasada.getVehiculo());
+		
 		return pasoUnVehiculo;
 	}
 
 	public ArrayList<Pasada> getListaDeVehiculosQuePasaron() {
 		return this.listaDeVehiculosQuePasaron;
-	}
-
-	public Boolean registrarVehiculoPorSiNuncaPaso(Vehiculo vehiculo) {
-		Boolean seRegistro = vehiculosSinDuplicadosQuePasaron.add(vehiculo);
-		return seRegistro;
 	}
 	
 	public HashSet<Vehiculo> getVehiculosSinDuplicadosQuePasaron() {

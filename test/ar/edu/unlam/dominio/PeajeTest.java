@@ -27,7 +27,7 @@ public class PeajeTest {
 		Vehiculo vehiculoGenerico = new Vehiculo(patente);
 		LocalDateTime fechaConHoraActual = LocalDateTime.of(2025,9,21,17,11,0);
 		
-		Pasada pasada1 = new Pasada(vehiculoGenerico.getPatente(), fechaConHoraActual);
+		Pasada pasada1 = new Pasada(vehiculoGenerico, fechaConHoraActual);
 		Boolean pasoUnVehiculo = peaje.registrarPasadaDeUnVehiculo(pasada1);
 		
 		assertTrue(pasoUnVehiculo);
@@ -42,15 +42,15 @@ public class PeajeTest {
 		
 		// PASADA 1
 		LocalDateTime fechaConHoraPasada1 = LocalDateTime.of(2025,9,21,17,11,0);
-		Pasada pasada1 = new Pasada(vehiculoGenerico.getPatente(), fechaConHoraPasada1);
+		Pasada pasada1 = new Pasada(vehiculoGenerico, fechaConHoraPasada1);
 		Boolean pasoUnVehiculo1 = peaje.registrarPasadaDeUnVehiculo(pasada1);
 		// PASADA 2
 		LocalDateTime fechaConHoraPasada2 = LocalDateTime.of(2025,9,21,19,45,32);
-		Pasada pasada2 = new Pasada(vehiculoGenerico.getPatente(), fechaConHoraPasada2);
+		Pasada pasada2 = new Pasada(vehiculoGenerico, fechaConHoraPasada2);
 		Boolean pasoUnVehiculo2 = peaje.registrarPasadaDeUnVehiculo(pasada2);
 		// PASADA 3
 		LocalDateTime fechaConHoraPasada3 = LocalDateTime.of(2025,9,22,8,5,23);
-		Pasada pasada3 = new Pasada(vehiculoGenerico.getPatente(), fechaConHoraPasada3);
+		Pasada pasada3 = new Pasada(vehiculoGenerico, fechaConHoraPasada3);
 		Boolean pasoUnVehiculo3 = peaje.registrarPasadaDeUnVehiculo(pasada3);
 		
 		assertTrue(pasoUnVehiculo1);
@@ -60,7 +60,7 @@ public class PeajeTest {
 	}
 	
 	@Test
-	public void dadoQueHayQueListarTodosLosVehiculosCuandoPasenPorElTelepaseHayQueListarlosEnUnHashlistParaQueNoHayaRepetidos() {
+	public void dadoQueHayQueListarTodosLosVehiculosCuandoPasenPorElTelepaseHayQueListarlosEnUnHashSetParaQueNoHayaRepetidos() {
 		// DATOS DE TRES VEHICULOS
 		String patente1 = "AB123CD";
 		Vehiculo vehiculoGenerico1 = new Vehiculo(patente1);
@@ -71,35 +71,25 @@ public class PeajeTest {
 		
 		// PASADA 1
 		LocalDateTime fechaConHoraPasada1 = LocalDateTime.of(2025,9,21,17,11,0);
-		Pasada pasada1 = new Pasada(vehiculoGenerico1.getPatente(), fechaConHoraPasada1);
+		Pasada pasada1 = new Pasada(vehiculoGenerico1, fechaConHoraPasada1);
 		peaje.registrarPasadaDeUnVehiculo(pasada1);
-		Boolean seRegistro1 = peaje.registrarVehiculoPorSiNuncaPaso(vehiculoGenerico1);
 		// PASADA 2
 		LocalDateTime fechaConHoraPasada2 = LocalDateTime.of(2025,9,21,19,47,32);
-		Pasada pasada2 = new Pasada(vehiculoGenerico2.getPatente(), fechaConHoraPasada2);
+		Pasada pasada2 = new Pasada(vehiculoGenerico2, fechaConHoraPasada2);
 		peaje.registrarPasadaDeUnVehiculo(pasada2);
-		Boolean seRegistro2 = peaje.registrarVehiculoPorSiNuncaPaso(vehiculoGenerico2);
 		// PASADA 3
 		LocalDateTime fechaConHoraPasada3 = LocalDateTime.of(2025,9,22,8,5,23);
-		Pasada pasada3 = new Pasada(vehiculoGenerico1.getPatente(), fechaConHoraPasada3);
+		Pasada pasada3 = new Pasada(vehiculoGenerico1, fechaConHoraPasada3);
 		peaje.registrarPasadaDeUnVehiculo(pasada3);
-		Boolean seRegistro3 = peaje.registrarVehiculoPorSiNuncaPaso(vehiculoGenerico1);
 		// PASADA 4
 		LocalDateTime fechaConHoraPasada4 = LocalDateTime.of(2025,9,22,8,11,42);
-		Pasada pasada4 = new Pasada(vehiculoGenerico3.getPatente(), fechaConHoraPasada4);
+		Pasada pasada4 = new Pasada(vehiculoGenerico3, fechaConHoraPasada4);
 		peaje.registrarPasadaDeUnVehiculo(pasada4);
-		Boolean seRegistro4 = peaje.registrarVehiculoPorSiNuncaPaso(vehiculoGenerico3);
 		// PASADA 5
 		LocalDateTime fechaConHoraPasada5 = LocalDateTime.of(2025,9,22,8,12,3);
-		Pasada pasada5 = new Pasada(vehiculoGenerico2.getPatente(), fechaConHoraPasada5);
+		Pasada pasada5 = new Pasada(vehiculoGenerico2, fechaConHoraPasada5);
 		peaje.registrarPasadaDeUnVehiculo(pasada5);
-		Boolean seRegistro5 = peaje.registrarVehiculoPorSiNuncaPaso(vehiculoGenerico2);
 		
-		assertTrue(seRegistro1);
-		assertTrue(seRegistro2);
-		assertFalse(seRegistro3);
-		assertTrue(seRegistro4);
-		assertFalse(seRegistro5);
 		assertEquals(3, peaje.getVehiculosSinDuplicadosQuePasaron().size());
 	}
 }
