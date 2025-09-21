@@ -4,12 +4,15 @@ import java.time.LocalDateTime;
 
 public class Pasada {
 
-	private String patente;
+	private Vehiculo vehiculo;
 	private LocalDateTime fechaConHoraDeLaPasada;
 
-	public Pasada(String patente, LocalDateTime fechaConHoraDeLaPasada) {
-		this.patente = patente;
+	public Pasada(Vehiculo vehiculo, LocalDateTime fechaConHoraDeLaPasada) {
+		this.vehiculo = vehiculo;
 		this.fechaConHoraDeLaPasada = fechaConHoraDeLaPasada;
 	}
 
+	public Vehiculo getVehiculo() {
+		return this.vehiculo;
+	}
 }
